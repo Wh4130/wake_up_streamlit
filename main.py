@@ -1,8 +1,26 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+def get_driver():
+    chrome_options = Options()
+    
+    # 關鍵：雲端環境必須開啟 headless 模式
+    chrome_options.add_argument("--headless") 
+    
+    # 關鍵：解決 Linux 權限與資源限制問題
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu") # 雲端無顯示卡
+
+    # 如果是在 Render 部署，通常需要指定 Chrome 執行檔路徑（視安裝方式而定）
+    # chrome_options.binary_location = "/usr/bin/google-chrome" 
+
+    driver = webdriver.Chrome(options=chrome_options)
+    return driver
 
 # * Cronjob that wakes up the streamlit apps
 urls = {
@@ -25,7 +43,7 @@ urls = {
 
 
 for title, url in urls.items():
-    driver = webdriver.Chrome()
+    driver = get_driver()
 
     # Open a web page
     driver.get(url)
