@@ -41,9 +41,9 @@ urls = {
         "Minesweeper": "https://minesweeper-wh.streamlit.app/"}
 
 
-
+driver = get_driver()
 for title, url in urls.items():
-    driver = get_driver()
+    
 
     # Open a web page
     driver.get(url)
@@ -57,5 +57,5 @@ for title, url in urls.items():
     except Exception as E:
         print(E)
 
-    # Close the browser
-    driver.quit()
+# Close the browser
+driver.quit()
