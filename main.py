@@ -1,6 +1,8 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # * Cronjob that wakes up the streamlit apps
 urls = {
@@ -20,21 +22,22 @@ urls = {
         
         "Minesweeper": "https://minesweeper-wh.streamlit.app/"}
 
-driver = webdriver.Chrome()
+
 
 for title, url in urls.items():
+    driver = webdriver.Chrome()
+
     # Open a web page
     driver.get(url)
-    time.sleep(5)
 
+    # Explicit wait then click the wake up button
     try:
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.element_to_be_clickable((By.TAG_NAME, 'button')))
         driver.find_element(By.TAG_NAME, 'button').click()
-        time.sleep(1)
         print(f"'{title}' is awaken!")
     except Exception as E:
         print(E)
 
-    time.sleep(2)
-
-# Close the browser
-driver.quit()
+    # Close the browser
+    driver.quit()
