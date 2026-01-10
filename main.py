@@ -35,6 +35,8 @@ urls = {
         "iii_Demand_Foresight_Tools (main)": "https://demand-foresight-trend-report-generator-main.streamlit.app/",
         
         "Taiwan Media Dashboard": "https://taiwan-media-dashboard-tool.streamlit.app/",
+
+        "README agent": "https://readme-compile-agent.streamlit.app/", 
         
         "Tic Tac Toe": "https://tic-tac-toe-with-agent.streamlit.app/",
         
