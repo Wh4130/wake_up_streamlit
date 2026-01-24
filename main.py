@@ -39,8 +39,12 @@ urls = {
         "README agent": "https://readme-compile-agent.streamlit.app/", 
         
         "Tic Tac Toe": "https://tic-tac-toe-with-agent.streamlit.app/",
+
+        "Financial Dashboard": "https://taiwan-financialdashboard.streamlit.app/",
         
-        "Minesweeper": "https://minesweeper-wh.streamlit.app/"}
+        # "Minesweeper": "https://minesweeper-wh.streamlit.app/",
+        
+        }
 
 
 driver = get_driver()
