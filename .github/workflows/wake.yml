@@ -1,0 +1,26 @@
+name: Wake Streamlit apps
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"   # 每 3 小時一次（UTC 時間）
+  workflow_dispatch:         # 可以在 GitHub 網頁上手動執行
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest   # 內建 Google Chrome，不用另外安裝
+    timeout-minutes: 20      # 超過 20 分鐘就自動停止
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Wake up apps
+        run: python main.py
